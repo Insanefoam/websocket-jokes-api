@@ -7,13 +7,12 @@ import {
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { HEROKU_PORT } from 'src/config';
 import { WsAuthGuard } from 'src/guards/ws-auth.guard';
 import { JokesService } from './jokes.service';
 
 const JOKES_WS_ROOM = 'JOKES_WS_ROOM';
 
-@WebSocketGateway(HEROKU_PORT || 80)
+@WebSocketGateway()
 export class JokesGateway implements OnGatewayConnection, OnModuleInit {
   constructor(private readonly jokesService: JokesService) {}
 
